@@ -1,0 +1,48 @@
+---
+layout: default
+title: Explorers Scouting
+---
+
+<header class="hero">
+  <div class="hero__overlay"></div>
+  <div class="hero__content" role="banner" aria-label="Explorers Scouting">
+    <h1>Explorers Scouting</h1>
+    <p>Adventure. Character. Skills — for every age band.</p>
+    <nav class="grade-nav" aria-label="Grade bands">
+      <a class="btn" href="{{ '/preschool/' | relative_url }}">Preschool</a>
+      <a class="btn" href="{{ '/kindergarten/' | relative_url }}">Kindergarten</a>
+      <a class="btn" href="{{ '/1-2/' | relative_url }}">1st–2nd Grade</a>
+      <a class="btn" href="{{ '/3-5/' | relative_url }}">3rd–5th Grade</a>
+      <a class="btn" href="{{ '/middle/' | relative_url }}">Middle School</a>
+      <a class="btn" href="{{ '/high/' | relative_url }}">High School</a>
+    </nav>
+    <!-- Optional: global $10/month membership button (swap your real Price ID) -->
+    <div style="margin-top:1rem;">
+      <a class="btn" data-checkout data-mode="subscription" data-price="price_123MONTHLY"
+         data-meta='{"plan":"Explorers Membership"}'>
+        Join Membership – $10/month
+      </a>
+    </div>
+  </div>
+  <canvas id="bg" aria-hidden="true"></canvas>
+</header>
+
+<section class="intro">
+  <h2>Latest Merits</h2>
+  <div class="grid">
+    {% assign all = site.preschool | concat: site.kindergarten | concat: site.grade1_2 | concat: site.grade3_5 | concat: site.middle | concat: site.high %}
+    {% assign latest = all | sort: 'date' | reverse | slice: 0,6 %}
+    {% for post in latest %}
+      <article class="card">
+        <a href="{{ post.url | relative_url }}">
+          {% if post.badge_icon %}<img class="card__img" src="{{ post.badge_icon | relative_url }}" alt="Badge: {{ post.title }}">{% endif %}
+          <h3>{{ post.title }}</h3>
+          <p class="muted">{{ post.grade_band }} • {{ post.date | date: "%b %-d, %Y" }}</p>
+          <p>{{ post.summary | default: post.excerpt }}</p>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<script src="{{ '/assets/js/bg.js' | relative_url }}"></script>
