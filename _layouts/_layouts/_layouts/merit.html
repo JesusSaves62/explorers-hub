@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<article class="intro">
+  <p class="muted">{{ page.grade_band }} • {{ page.date | date: "%b %-d, %Y" }}</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.badge_icon %}
+    <img class="card__img" src="{{ page.badge_icon | relative_url }}" alt="Badge: {{ page.title }}">
+  {% endif %}
+  {% if page.summary %}<p>{{ page.summary }}</p>{% endif %}
+
+  {% if page.sellable and page.price_id %}
+    <p>
+      {% assign mode = page.checkout_mode | default: "payment" %}
+      {% assign qty = page.quantity | default: 1 %}
+      <a class="btn"
+         data-checkout
+         data-mode="{{ mode }}"
+         data-price="{{ page.price_id }}"
+         data-qty="{{ qty }}"
+         data-meta='{"title":"{{ page.title | escape }}","grade":"{{ page.grade_band | escape }}"}'>
+        {% if mode == "subscription" %}
+          Subscribe – $10/month
+        {% else %}
+          Buy Now
+        {% endif %}
+      </a>
+    </p>
+  {% endif %}
+
+  {% if page.requirements %}
+    <h2>Requirements</h2>
+    <ol>
+      {% for req in page.requirements %}
+        <li>{{ req }}</li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+
+  {% if page.materials %}
+    <h3>Materials</h3>
+    <ul>
+      {% for m in page.materials %}
+        <li>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {{ content }}
+
+  {% if page.scripture %}
+    <hr>
+    <p class="muted"><strong>Scripture:</strong> {{ page.scripture }}</p>
+  {% endif %}
+</article>
