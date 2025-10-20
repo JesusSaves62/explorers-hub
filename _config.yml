@@ -1,0 +1,40 @@
+title: "Explorers Scouting"
+description: "Merits and adventures for young explorers."
+baseurl: ""
+url: "https://YOUR-USERNAME.github.io/explorers-scouting"
+theme: null
+markdown: kramdown
+
+collections:
+  preschool:
+    output: true
+    permalink: /preschool/:slug/
+  kindergarten:
+    output: true
+    permalink: /kindergarten/:slug/
+  grade1_2:
+    output: true
+    permalink: /1-2/:slug/
+  grade3_5:
+    output: true
+    permalink: /3-5/:slug/
+  middle:
+    output: true
+    permalink: /middle/:slug/
+  high:
+    output: true
+    permalink: /high/:slug/
+
+defaults:
+  - scope: {path: "", type: "preschool"}
+    values: {layout: merit, grade_band: "Preschool"}
+  - scope: {path: "", type: "kindergarten"}
+    values: {layout: merit, grade_band: "Kindergarten"}
+  - scope: {path: "", type: "grade1_2"}
+    values: {layout: merit, grade_band: "1st–2nd"}
+  - scope: {path: "", type: "grade3_5"}
+    values: {layout: merit, grade_band: "3rd–5th"}
+  - scope: {path: "", type: "middle"}
+    values: {layout: merit, grade_band: "Middle School"}
+  - scope: {path: "", type: "high"}
+    values: {layout: merit, grade_band: "High School"}
