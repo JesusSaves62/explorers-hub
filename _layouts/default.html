@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <main id="main">
+      {{ content }}
+    </main>
+    <footer class="intro" aria-label="Site footer">
+      <p class="muted">© {{ site.title }} — Powered by GitHub Pages & Jekyll</p>
+      <p><a href="{{ '/admin/' | relative_url }}">Admin</a></p>
+    </footer>
+    <script src="{{ '/assets/js/checkout.js' | relative_url }}"></script>
+  </body>
+</html>
