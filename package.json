@@ -1,0 +1,10 @@
+{
+  "name": "explorers-scouting",
+  "private": true,
+  "scripts": {
+    "build": "jekyll build"
+  },
+  "dependencies": {
+    "stripe": "^16.0.0"
+  }
+}
