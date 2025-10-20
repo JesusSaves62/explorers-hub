@@ -1,0 +1,11 @@
+[build]
+  publish = "_site"          # Jekyll's output
+  command = "jekyll build"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
