@@ -1,0 +1,92 @@
+backend:
+  name: git-gateway   # Netlify Identity + Git Gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+fields_common: &fields_common
+  - {label: "Title", name: "title", widget: "string"}
+  - {label: "Publish Date", name: "date", widget: "datetime"}
+  - {label: "Summary", name: "summary", widget: "text", required: false}
+  - {label: "Badge Icon", name: "badge_icon", widget: "image", required: false}
+
+  # --- e-commerce controls ---
+  - label: "Sell This Merit?"
+    name: "sellable"
+    widget: "boolean"
+    default: false
+    hint: "Turn on to show a Buy/Subscribe button on this page."
+  - label: "Checkout Mode"
+    name: "checkout_mode"
+    widget: "select"
+    options:
+      - { label: "One-time purchase", value: "payment" }
+      - { label: "Subscription", value: "subscription" }
+    default: "payment"
+    required: false
+    hint: "Use 'subscription' for recurring payments (e.g., $10/month)."
+  - label: "Stripe Price ID"
+    name: "price_id"
+    widget: "string"
+    required: false
+    hint: "From Stripe (e.g., price_123...). Required when Sell is ON."
+  - label: "Quantity"
+    name: "quantity"
+    widget: "number"
+    value_type: "int"
+    min: 1
+    default: 1
+    required: false
+  # ---------------------------
+
+  - label: "Requirements"
+    name: "requirements"
+    widget: "list"
+    summary: "{{fields.item}}"
+    field: {label: "Requirement", name: "item", widget: "string"}
+  - label: "Materials"
+    name: "materials"
+    widget: "list"
+    required: false
+    field: {label: "Item", name: "item", widget: "string"}
+  - {label: "Scripture (optional)", name: "scripture", widget: "string", required: false}
+  - {label: "Body (Steps/Notes)", name: "body", widget: "markdown"}
+
+collections:
+  - name: "preschool"
+    label: "Preschool Merits"
+    folder: "_preschool"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
+  - name: "kindergarten"
+    label: "Kindergarten Merits"
+    folder: "_kindergarten"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
+  - name: "grade1_2"
+    label: "1st–2nd Grade Merits"
+    folder: "_grade1_2"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
+  - name: "grade3_5"
+    label: "3rd–5th Grade Merits"
+    folder: "_grade3_5"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
+  - name: "middle"
+    label: "Middle School Merits"
+    folder: "_middle"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
+  - name: "high"
+    label: "High School Merits"
+    folder: "_high"
+    create: true
+    slug: "{{slug}}"
+    fields: *fields_common
